@@ -19,7 +19,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
 user = sp.current_user()
 print(f"Logged in as: {user['display_name']} ({user['id']})")
 
-# Get a list of your playlists
+# Get a list of the playlists
 playlists = sp.current_user_playlists()
 for playlist in playlists['items']:
     print(f"- {playlist['name']} (ID: {playlist['id']})")
