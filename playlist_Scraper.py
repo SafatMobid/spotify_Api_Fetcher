@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyOAuth
 
 CLIENT_ID = "yourClientID"
 CLIENT_SECRET = "yorClientSecret"
-REDIRECT_URL = "http://127.0.0.1/callback"
+REDIRECT_URL = "http://127.0.0.1:8000/callback"
 SCOPE = 'playlist-read-private' #-------> Used to get to playlist
 
 #------------AUTH TO LOG IN ------------------#
