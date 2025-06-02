@@ -1,4 +1,6 @@
 🎵 Spotify Playlist Scraper
+
+
 A simple Python script to authenticate with the Spotify API using OAuth and fetch your Spotify profile information. This is the first step toward building a playlist and track scraper.
 
 🚀 Features
