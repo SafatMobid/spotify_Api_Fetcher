@@ -12,11 +12,10 @@ env/
 
 # Spotipy cache
 .cache
+config.ini
 
-# Jupyter Notebook checkpoints (if you use them)
 .ipynb_checkpoints/
 
-# Logs and temporary files
 *.log
 *.tmp
 

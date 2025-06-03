@@ -1,10 +1,13 @@
+import configparser
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
 #-----------CONFIG TO ACCESS ACCOUNT-------------------#
+config = configparser.ConfigParser()
+config.read("config.ini")
 
-CLIENT_ID = "yourClientID"
-CLIENT_SECRET = "yourClientSecret"
+CLIENT_ID = config["auth"]["Client_ID"]
+CLIENT_SECRET = config["auth"]["Client_Secret"]
 REDIRECT_URI = "http://127.0.0.1:8000/callback"
 SCOPE = "playlist-read-private", "playlist-read-private user-read-recently-played user-top-read" #-------> Used to give permission on what to access
 
