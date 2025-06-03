@@ -22,4 +22,10 @@ print(f"Logged in as: {user['display_name']} ({user['id']})")
 # Get a list of the playlists
 playlists = sp.current_user_playlists()
 for playlist in playlists['items']:
-    print(f"- {playlist['name']} (ID: {playlist['id']})")
+
+# To try to handle non standard playlist names (i.e Playlist with emojis)
+    try:
+        name = playlist['name']
+        print(f"- {name} (ID: {playlist['id']})")
+    except UnicodeEncodeError:
+        print(f"- [undefined playlist name] (ID: {playlist['id']})") #Got it to work but it will define all unreadable playlist name as undefined
