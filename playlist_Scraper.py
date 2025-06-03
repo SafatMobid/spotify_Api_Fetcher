@@ -3,29 +3,40 @@ from spotipy.oauth2 import SpotifyOAuth
 
 #-----------CONFIG TO ACCESS ACCOUNT-------------------#
 
-CLIENT_ID = "yourClientID"
-CLIENT_SECRET = "yorClientSecret"
-REDIRECT_URL = "http://127.0.0.1:8000/callback"
-SCOPE = 'playlist-read-private' #-------> Used to get to playlist
+CLIENT_ID = "c5b36bf54fd14609983903d514cc15c2"
+CLIENT_SECRET = "b168ce33ac0c4a4bb9f839a43848104e"
+REDIRECT_URI = "http://127.0.0.1:8000/callback"
+SCOPE = "playlist-read-private", "playlist-read-private user-read-recently-played user-top-read" #-------> Used to give permission on what to access
 
-#------------AUTH TO LOG IN ------------------#
+#------------AUTH TO LOG IN------------------#
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
                                                client_secret=CLIENT_SECRET,
-                                               redirect_uri=REDIRECT_URL,
+                                               redirect_uri=REDIRECT_URI,
                                                scope=SCOPE))  #Access to the API
 
 # -----------------TEST-----------------#
 # Get current user info
 user = sp.current_user()
-print(f"Logged in as: {user['display_name']} ({user['id']})")
+print(f"Logged in as: {user["display_name"]} ({user["id"]})")
+    
+# # TEST to see if I can get top 5 song - Works
+# # Just for fun
+top_songs = sp.current_user_top_tracks(limit=5, time_range="short_term") # short_term = 4 weeks, medium_term = 6 months, long_term = couple of years
+print("Your Top 5 Tracks Right Now:")
+for i, item in enumerate(top_songs["items"], start=1):
+    track_name = item["name"]
+    artists = ", ".join(artist["name"] for artist in item["artists"])
+    print(f"{i}. {track_name} by {artists}")
 
 # Get a list of the playlists
+print("Your Playlists:")
 playlists = sp.current_user_playlists()
-for playlist in playlists['items']:
+for playlist in playlists["items"]:   
 
 # To try to handle non standard playlist names (i.e Playlist with emojis)
     try:
-        name = playlist['name']
-        print(f"- {name} (ID: {playlist['id']})")
+        name = playlist["name"]
+        print(f"- {name} (ID: {playlist["id"]})")
     except UnicodeEncodeError:
-        print(f"- [undefined playlist name] (ID: {playlist['id']})") #Got it to work but it will define all unreadable playlist name as undefined
+        print(f"- [undefined playlist name] (ID: {playlist["id"]})") #Got it to work but it will define all unreadable playlist name as undefined
+
