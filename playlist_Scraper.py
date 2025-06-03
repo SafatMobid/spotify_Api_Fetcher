@@ -3,8 +3,8 @@ from spotipy.oauth2 import SpotifyOAuth
 
 #-----------CONFIG TO ACCESS ACCOUNT-------------------#
 
-CLIENT_ID = "c5b36bf54fd14609983903d514cc15c2"
-CLIENT_SECRET = "b168ce33ac0c4a4bb9f839a43848104e"
+CLIENT_ID = "yourClientID"
+CLIENT_SECRET = "yourClientSecret"
 REDIRECT_URI = "http://127.0.0.1:8000/callback"
 SCOPE = "playlist-read-private", "playlist-read-private user-read-recently-played user-top-read" #-------> Used to give permission on what to access
 
