@@ -53,10 +53,15 @@ for playlist in playlists["items"]:
     # Loop through each track
     for item in results['items']:
         track = item['track']
+    
         if track:  # Some may be None (e.g. removed tracks)
             song_name = track['name']
             artists = ", ".join([artist['name'] for artist in track['artists']])
             print(f"   - {song_name} by {artists}")
 
-# need to fix error when it is not a song(i.e podcast, removed song)"
+        if not track or 'artists' not in track:
+            print("   - [Unknown or non-song item]")
+            continue
+
+    # Error handling for foriegn song name
 
