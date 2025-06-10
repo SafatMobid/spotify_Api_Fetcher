@@ -38,8 +38,9 @@ bash
 Copy
 Edit
 pip install spotipy
-💻 Usage
-1️⃣ Configure Your Credentials
+
+
+1. Configure Your Credentials
 
 Update the CLIENT_ID, CLIENT_SECRET, and REDIRECT_URI in the script:
 
@@ -48,30 +49,26 @@ Copy
 Edit
 CLIENT_ID = 'your-client-id'
 CLIENT_SECRET = 'your-client-secret'
-REDIRECT_URI = 'http://localhost:8888/callback'
-2️⃣ Run the Script
+REDIRECT_URI = 'http://localhost:8000/callback'
+
+2. Run the Script
 
 bash
 Copy
 Edit
+
 python spotify_auth_test.py
-3️⃣ Authenticate via Browser
+3. Authenticate via Browser
 
 A browser window will open. Log into your Spotify account and grant access.
 
-4️⃣ See Your Spotify Profile Info
+4. See Your Spotify Profile Info
+Your top 5 songs
+Playlist Names + Songs
 
-If authentication is successful, you’ll see output like:
+TO BE ADDED:
+Exporting it all to a CSV File
 
-pgsql
-Copy
-Edit
-Logged in as: YourSpotifyName
-🔧 Next Steps
-✅ Scrape all your playlists and tracks
-✅ Save data to CSV or database
-✅ Add audio features and analytics
-✅ Build a web interface for exploring your music data
 
 📄 License
 MIT License
