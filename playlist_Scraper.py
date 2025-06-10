@@ -47,21 +47,33 @@ for playlist in playlists["items"]:
 
 #---------------SONGS-----------------------------------#
 
-    # Get songs from the playlist
+# Get songs from the playlist
     results = sp.playlist_items(playlist["id"])
-    
+
     # Loop through each track
     for item in results['items']:
-        track = item['track']
-    
-        if track:  # Some may be None (e.g. removed tracks)
-            song_name = track['name']
-            artists = ", ".join([artist['name'] for artist in track['artists']])
-            print(f"   - {song_name} by {artists}")
+        track = item.get('track')
 
-        if not track or 'artists' not in track:
-            print("   - [Unknown or non-song item]")
+        if not track:
+            print("   - [Unknown or removed track]")
             continue
 
-    # Error handling for foriegn song name
+        # Check if 'artists' key exists before accessing it
+        if 'artists' not in track:
+            try:
+                print(f"   - {track.get('name', '[Unknown track name]')} by [Unknown artists]")
+            except UnicodeEncodeError:
+                print("   - [undefined song]")
+            continue
+
+        # Safely get song name and artists list
+        song_name = track.get('name', '[Unknown track name]')
+        artists = ", ".join(artist.get('name', '[Unknown artist]') for artist in track['artists'])
+
+        
+        try:
+            print(f"   - {song_name} by {artists}")
+        except UnicodeEncodeError:
+            print("   - [undefined song]")
+
 
