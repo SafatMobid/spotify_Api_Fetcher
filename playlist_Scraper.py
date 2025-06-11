@@ -1,5 +1,6 @@
 import configparser
 import spotipy
+import csv
 from spotipy.oauth2 import SpotifyOAuth
 
 #-----------CONFIG TO ACCESS ACCOUNT-------------------#
@@ -21,15 +22,22 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
 # Get current user info
 user = sp.current_user()
 print(f"Logged in as: {user["display_name"]} ({user["id"]})")
+
+#------------------CSV------------------------------------------#
+with open ("spotify_" + user["display_name"]+ ".csv", mode="w", newline="", encoding ="utf-8") as csvfile:
+    csv_writer = csv.writer(csvfile)
+
+    csv_writer.writerows["Playlist Name", "Playlist ID", "Track Name", "Artists"]
+
     
 # # TEST to see if I can get top 5 song - Works
 # # Just for fun
-top_songs = sp.current_user_top_tracks(limit=5, time_range="short_term") # short_term = 4 weeks, medium_term = 6 months, long_term = couple of years
-print("Your Top 5 Tracks Right Now:")
-for i, item in enumerate(top_songs["items"], start=1):
-    track_name = item["name"]
-    artists = ", ".join(artist["name"] for artist in item["artists"])
-    print(f"{i}. {track_name} by {artists}")
+    top_songs = sp.current_user_top_tracks(limit=5, time_range="short_term") # short_term = 4 weeks, medium_term = 6 months, long_term = couple of years
+    print("Your Top 5 Tracks Right Now:")
+    for i, item in enumerate(top_songs["items"], start=1):
+        track_name = item["name"]
+        artists = ", ".join(artist["name"] for artist in item["artists"])
+        print(f"{i}. {track_name} by {artists}")
 
 #------------GETTING PLAYLISTS------------------#
 
@@ -58,7 +66,7 @@ for playlist in playlists["items"]:
             print("   - [Unknown or removed track]")
             continue
 
-        # Check if 'artists' key exists before accessing it
+        # Check if 'artists' exists before accessing it
         if 'artists' not in track:
             try:
                 print(f"   - {track.get('name', '[Unknown track name]')} by [Unknown artists]")
@@ -77,3 +85,4 @@ for playlist in playlists["items"]:
             print("   - [undefined song]")
 
 
+        csv_writer.writerows(["Playlist Name", "Playlist ID","Track Name", "Artists"])
