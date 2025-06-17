@@ -46,24 +46,16 @@ Redirect URI (e.g., http://localhost:8000/callback)
 
 2️⃣ Install Dependencies
 
-bash
-Copy
-Edit
+
 pip install spotipy
 3️⃣ Configure Your Credentials
 Update your script:
 
-python
-Copy
-Edit
 CLIENT_ID = 'your-client-id'
 CLIENT_SECRET = 'your-client-secret'
 REDIRECT_URI = 'http://localhost:8000/callback'
 4️⃣ Run the Script
 
-bash
-Copy
-Edit
 python spotify_auth_test.py
 5️⃣ Authenticate via Browser
 Log into your Spotify account and authorize the app when the browser opens.
