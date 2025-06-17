@@ -1,4 +1,4 @@
-🎵 Spotify Playlist Scraper & API Integration
+🎵 Spotify API Fetcher
 
 +++++ FOR SPOTIFY USER DATA +++++
 
